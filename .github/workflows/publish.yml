@@ -18,5 +18,5 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: jav13r/php
-          dockerfile: ../../Dockerfile.php5-cli
+          dockerfile: Dockerfile.php5-cli
           tags: 5.6-cli, 5.6.35-cli
