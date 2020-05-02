@@ -11,8 +11,6 @@ jobs:
     name: Publish image docker hub
     runs-on: ubuntu-latest
     env:
-      DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       REPOSITORY: jav13r/php
 
     steps:
@@ -22,8 +20,8 @@ jobs:
       - name: 20-Push image to docker Hub
         uses: docker/build-push-action@v1
         with:
-          username: $DOCKER_USER
-          password: $DOCKER_PASSWORD
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
           repository: $REPOSITORY
           dockerfile: Dockerfile.php5-cli
           tags: 5.6-cli, 5.6.35-cli
@@ -31,6 +29,6 @@ jobs:
       - name: 30-Push update README Docker Hub Description
         uses: peter-evans/dockerhub-description@v2.1.0
         env:
-          DOCKERHUB_USERNAME: $DOCKER_USER
-          DOCKERHUB_PASSWORD: $DOCKER_PASSWORD
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           DOCKERHUB_REPOSITORY: $REPOSITORY
