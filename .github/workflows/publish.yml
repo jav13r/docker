@@ -1,4 +1,4 @@
-name: Publish image docker hub
+name: Publish image php
 
 on:
   push:
@@ -6,23 +6,31 @@ on:
       - master
 
 jobs:
+
   push_to_registry:
-    name: Push image docker hub
+    name: Publish image docker hub
     runs-on: ubuntu-latest
+    env:
+      DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      REPOSITORY: jav13r/php
+
     steps:
-      - name: Check out the repo
+      - name: 10-Check out the repo
         uses: actions/checkout@v2
-      - name: Push to Docker Hub
+
+      - name: 20-Push image to docker Hub
         uses: docker/build-push-action@v1
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: jav13r/php
+          username: $DOCKER_USER
+          password: $DOCKER_PASSWORD
+          repository: $REPOSITORY
           dockerfile: Dockerfile.php5-cli
           tags: 5.6-cli, 5.6.35-cli
-      - name: Docker Hub Description
+
+      - name: 30-Push update README Docker Hub Description
         uses: peter-evans/dockerhub-description@v2.1.0
         env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKERHUB_REPOSITORY: jav13r/php
+          DOCKERHUB_USERNAME: $DOCKER_USER
+          DOCKERHUB_PASSWORD: $DOCKER_PASSWORD
+          DOCKERHUB_REPOSITORY: $REPOSITORY
