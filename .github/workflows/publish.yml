@@ -5,13 +5,14 @@ on:
     branches:
       - master
 
+env:
+  REPOSITORY: jav13r/php
+
 jobs:
 
   push_to_registry:
     name: Publish image docker hub
     runs-on: ubuntu-latest
-    env:
-      REPOSITORY: jav13r/php
 
     steps:
       - name: 10-Check out the repo
@@ -22,7 +23,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ${ REPOSITORY }
+          repository: ${{ REPOSITORY }}
           dockerfile: Dockerfile.php5-cli
           tags: 5.6-cli, 5.6.35-cli
 
