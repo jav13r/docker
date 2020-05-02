@@ -20,3 +20,9 @@ jobs:
           repository: jav13r/php
           dockerfile: Dockerfile.php5-cli
           tags: 5.6-cli, 5.6.35-cli
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v2.1.0
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKERHUB_REPOSITORY: peterevans/dockerhub-description
