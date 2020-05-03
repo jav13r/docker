@@ -2,11 +2,8 @@ FROM php:5.6.35-cli
 
 RUN apt-get update \
     && apt-get install -y \
-    zip \
-    unzip \
     curl \
-    wget \
-    nano \
+    vim \
     cron \
     git \
     mcrypt \

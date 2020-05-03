@@ -1,4 +1,4 @@
-name: php5
+name: php5-cli
 
 on:
   push:
@@ -7,6 +7,8 @@ on:
 
 env:
   REPOSITORY: jav13r/php
+  TAGS: "5.6-cli, 5.6.35-cli"
+  DOCKERFILE_NAME: Dockerfile.php5-cli
 
 jobs:
 
@@ -24,8 +26,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ env.REPOSITORY }}
-          dockerfile: php/Dockerfile.php5-cli
-          tags: 5.6-cli, 5.6.35-cli
+          dockerfile: php/${{ env.DOCKERFILE_NAME }}
+          tags: ${{ env.TAGS }}
 
       - name: 30-Push update README Docker Hub Description
         uses: peter-evans/dockerhub-description@v2.1.0
