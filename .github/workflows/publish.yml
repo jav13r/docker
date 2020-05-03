@@ -20,7 +20,7 @@ jobs:
       - name: 10-Check out the repo
         uses: actions/checkout@v2
 
-      - name: 20-Push image to docker Hub
+      - name: 20-Push image
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -29,7 +29,7 @@ jobs:
           dockerfile: php/${{ env.DOCKERFILE_NAME }}
           tags: ${{ env.TAGS }}
 
-      - name: 30-Push update README Docker Hub Description
+      - name: 30-Push update README
         uses: peter-evans/dockerhub-description@v2.1.0
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
