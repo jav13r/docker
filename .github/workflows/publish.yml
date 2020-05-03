@@ -24,7 +24,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ env.REPOSITORY }}
-          dockerfile: Dockerfile.php5-cli
+          dockerfile: php/Dockerfile.php5-cli
           tags: 5.6-cli, 5.6.35-cli
 
       - name: 30-Push update README Docker Hub Description
