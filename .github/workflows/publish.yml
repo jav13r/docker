@@ -1,4 +1,4 @@
-name: Publish image php
+name: php5
 
 on:
   push:

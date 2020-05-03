@@ -1,5 +1,9 @@
-# Docker Images
+# Quick reference
 
-## PHP
+  - Maintained by: [jav13r/docker](https://github.com/jav13r/docker)
 
-![](https://github.com/jav13r/docker/workflows/Publish%20image%20php/badge.svg)
+# Supported tags and respective `Dockerfile` links
+
+  - [`5.6`, `5.6.35`](https://github.com/jav13r/docker/blob/master/php/Dockerfile.php5-cli)
+
+# License
