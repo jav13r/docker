@@ -1,4 +1,4 @@
-name: php5-cli
+name: php7
 
 on:
   push:
@@ -27,7 +27,16 @@ jobs:
           dockerfile: php/Dockerfile.php7-cli
           tags: 7.4-cli
 
-      - name: 30-Push update README
+      - name: 30-Push image php7 fpm
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ${{ env.REPOSITORY }}
+          dockerfile: php/Dockerfile.php7-fpm
+          tags: 7.4-fpm
+
+      - name: 40-Push update README
         uses: peter-evans/dockerhub-description@v2.1.0
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
